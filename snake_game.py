@@ -24,8 +24,8 @@ head.direction = "up"
 
 def move():
     if head.direction == "up":
-	y = head.ycor()
-	head.sety(y + 20)
+        y = head.ycor()
+        head.sety(y + 20)
 
 
 # Main game loop
