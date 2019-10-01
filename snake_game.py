@@ -34,19 +34,23 @@ segments = []
 
 
 def go_up():
-    head.direction = "up"
+    if head.direction != "down":
+        head.direction = "up"
 
 
 def go_down():
-    head.direction = "down"
+    if head.direction != "up":
+        head.direction = "down"
 
 
 def go_left():
-    head.direction = "left"
+    if head.direction != "right":
+        head.direction = "left"
 
 
 def go_right():
-    head.direction = "right"
+    if head.direction != "left":
+        head.direction = "right"
 
 
 def move():
@@ -120,6 +124,21 @@ while True:
         segments[0].goto(x, y)
 
     move()
+
+    # Check for head collision with the body segments
+    for segment in segments:
+        if segment.distance(head) < 20:
+            time.sleep(1)
+            head.goto(0, 0)
+            head.direction = "stop"
+
+            # Hide the segments
+            for segments in segments:
+                segments.goto(1000, 1000)
+
+            # Clear the segments list
+            segments = []
+
     time.sleep(delay)
 
 wn.mainloop()
